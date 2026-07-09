@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saheed Mohammed Aasik | BIM Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* base + reset (no UI changes) */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink-soft: #4a4a46;
+      --ink-muted: #8a8a84;
+      --sand: #f5f2ec;
+      --sand-dark: #e8e4da;
+      --gold: #c4963a;
+      --gold-light: #e8d09a;
+      --white: #fdfcf9;
+      --border: rgba(26,26,24,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,252,249,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(196,150,58,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,150,58,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block; width: 32px; height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(253,252,249,0.6);
+      max-width: 420px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: var(--gold);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.875rem 2rem;
+      border-radius: 2px;
+      transition: background 0.2s;
+      width: fit-content;
+    }
+    .hero-cta:hover { background: var(--gold-light); }
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 2;
+      padding: 6rem 4rem 6rem 2rem;
+    }
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 380px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.03);
+      padding: 2rem 1.75rem;
+      transition: background 0.2s;
+    }
+    .stat-box:hover { background: rgba(196,150,58,0.08); }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.8rem;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(253,252,249,0.45);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 4rem; }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-tag::before {
+      content: '';
+      display: block; width: 24px; height: 1px;
+      background: var(--gold);
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 3rem;
+    }
+    h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ABOUT */
+    .about { background: var(--sand); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--ink-soft);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+    .about-skills { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-row { display: flex; flex-direction: column; gap: 0.4rem; }
+    .skill-name {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
+    .skill-pct { color: var(--gold); }
+    .skill-bar {
+      height: 2px;
+      background: var(--sand-dark);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .project-card {
+      background: var(--white);
+      padding: 0;
+      overflow: hidden;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .project-card:hover { transform: scale(1.01); z-index: 2; }
+    .project-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--sand-dark);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .project-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      color: var(--ink-muted);
+    }
+    .placeholder-icon {
+      width: 48px; height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .placeholder-icon svg { width: 24px; height: 24px; stroke: var(--ink-muted); fill: none; }
+    .placeholder-text { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .project-lod {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--ink);
+      color: var(--gold-light);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
+    }
+    .project-body { padding: 1.5rem; }
+    .project-type {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--sand);
+      color: var(--ink-soft);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    /* SKILLS GRID */
+    .skills-section { background: var(--ink); }
+    .skills-section h2 { color: var(--white); }
+    .skills-section .section-tag { color: var(--gold); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .skill-card {
+      background: var(--ink);
+      padding: 1.75rem;
+      transition: background 0.2s;
+    }
+    .skill-card:hover { background: rgba(196,150,58,0.08); }
+    .skill-card-icon {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(196,150,58,0.3);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .skill-card-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; }
+    .skill-card-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .skill-card-sub {
+      font-size: 0.75rem;
+      color: rgba(253,252,249,0.4);
+      line-height: 1.5;
+    }
+
+    /* EXPERIENCE TIMELINE */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item { position: relative; padding-bottom: 3rem; }
+    .timeline-dot {
+      position: absolute; left: -2rem; top: 6px;
+      width: 9px; height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+      transform: translateX(-4px);
+    }
+    .timeline-period {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-company {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.75;
+    }
+    .timeline-desc li { margin-bottom: 0.3rem; margin-left: 1rem; }
+
+    /* CONTACT */
+    .contact { background: var(--sand); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-text p {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      text-decoration: none;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--white);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+    .contact-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; flex-shrink: 0; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-block { display: flex; flex-direction: column; gap: 0.2rem; }
+    .info-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .info-value { font-size: 0.95rem; color: var(--ink); font-weight: 400; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      padding: 2rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: rgba(253,252,249,0.5);
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(253,252,249,0.25);
+    }
+
+    /* ANIMATE ON SCROLL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SLIDESHOW OVERLAY — added without UI change */
+    .slideshow-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+    }
+    .slideshow-overlay.open { display: flex; }
+    .slideshow-container {
+      max-width: 1000px;
+      width: 100%;
+      position: relative;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .slideshow-slide {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--sand-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .slideshow-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    
+    .slideshow-slide .fallback-text {
+      color: var(--ink-muted);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+    }
+    .slideshow-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(26,26,24,0.6);
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .slideshow-nav:hover { background: rgba(196,150,58,0.8); }
+    .slideshow-nav.prev { left: 12px; }
+    .slideshow-nav.next { right: 12px; }
+    .slideshow-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      line-height: 1;
+      padding: 0 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 11;
+      transition: background 0.2s;
+    }
+    .slideshow-close:hover { background: var(--gold); }
+    .slideshow-counter {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 0.3rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(4px);
+      z-index: 10;
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 4rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      .slideshow-nav { width: 32px; height: 32px; font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">S. M. Aasik</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO (unchanged) -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-tag">BIM Portfolio</div>
+    <h1>Structural <em>BIM</em><br>Modeler</h1>
+    <p class="hero-desc">Delivering LOD 200–400 BIM models with precision — from reinforcement detailing to clash-free coordination, backed by real construction site experience.</p>
+    <a href="#projects" class="hero-cta">View Projects <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Years experience</div></div>
+      <div class="stat-box"><div class="stat-num">200–400</div><div class="stat-label">LOD range delivered</div></div>
+      <div class="stat-box"><div class="stat-num">50+</div><div class="stat-label">Clash issues resolved per project</div></div>
+      <div class="stat-box"><div class="stat-num">30%</div><div class="stat-label">Faster drawing turnaround</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT (unchanged) -->
+<section class="about" id="about">
+  <div class="section-tag">About</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <h2>Where BIM meets the build</h2>
+      <p>I'm Saheed Mohammed Aasik, a Structural BIM Modeler based in Sri Lanka with over four years of experience producing accurate, coordinated structural models for residential and commercial building projects — from G+5 to G+10 typologies.</p>
+      <p>What sets me apart is direct site experience. As an Assistant Civil Engineer, I coordinated structural drawings with live RCC works and conducted pre-pour reinforcement inspections — giving me an instinct for how models translate into real construction that pure desk-based modelers rarely have.</p>
+      <p>I work within ISO 19650 BIM standards, align deliverables with BIM Execution Plan (BEP) requirements, and specialise in Revit Structure, Navisworks Manage, and AutoCAD. Open to immediate relocation to Saudi Arabia, UAE, or Qatar.</p>
+    </div>
+    <div class="about-skills reveal">
+      <h3 style="margin-bottom:1.5rem;">Core proficiencies</h3>
+      <div class="skill-row"><div class="skill-name"><span>Autodesk Revit Structure</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Navisworks Manage</span><span class="skill-pct">60%</span></div><div class="skill-bar"><div class="skill-fill" data-w="60"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>AutoCAD</span><span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Clash detection & coordination</span><span class="skill-pct">51%</span></div><div class="skill-bar"><div class="skill-fill" data-w="51"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>RCC structural detailing</span><span class="skill-pct">93%</span></div><div class="skill-bar"><div class="skill-fill" data-w="93"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>BBS preparation</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>SketchUp / Enscape</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" data-w="80"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS (cards updated with data-images) -->
+<section id="projects">
+  <div class="section-tag">Projects</div>
+  <h2>Selected work</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal"
+     data-images='[
+       "image/1/1...png",
+       "image/1/1..png",
+       "image/1/1.png",
+       "image/1/2.png",
+       "image/1/3.png",
+       "image/1/4.png"
+   
+       
+     ]'>  <div class="project-img">
+        <div class="project-lod">LOD 400</div>
+        <div class="project-img-placeholder">
+    <img src="images/Front/1.png" alt="Project Preview" class="project-image">
+</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Residential | G+8 Building</div>
+        <h3>RCC Structural Model — High-Rise Residential</h3>
+        <p class="project-desc">Full LOD 400 structural BIM model covering columns, beams, slabs, shear walls, and foundations. Reinforcement modelled for all concrete elements with BBS output. Clash detection resolved 50+ coordination issues with architectural model.</p>
+        <div class="project-tags"><span class="tag">Revit Structure</span><span class="tag">Navisworks</span><span class="tag">BBS</span><span class="tag">ISO 19650</span></div>
+      </div>
+    </div>
+
+    <div class="project-card reveal"
+     data-images='[
+       "image/2/1..png",
+       "image/2/1.png",
+       "image/2/2.png",
+       "image/2/3.png",
+       "image/2/4.png",
+       "image/2/5.png",
+       "image/2/6.png",
+       "image/2/7.png"
+     ]'>
+      <div class="project-img">
+        <div class="project-lod">LOD 350</div>
+        <div class="project-img-placeholder">
+          <div class="placeholder-icon"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V10l8-6 8 6v10"/><path d="M10 20v-6h4v6"/></svg></div>
+          <div class="placeholder-text">Click to view slideshow</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Residential | G+6 Building</div>
+        <h3>Structural Coordination & Shop Drawing Package</h3>
+        <p class="project-desc">Coordinated structural and architectural BIM models for a G+6 residential building. Produced a full shop drawing package directly from the federated model, cutting design-to-drawing turnaround by 30%.</p>
+        <div class="project-tags"><span class="tag">Revit Structure</span><span class="tag">Shop Drawings</span><span class="tag">BEP Compliance</span></div>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-images='[
+       "image/2/1..png",
+       "image/2/1.png",
+       "image/2/2.png",
+       "image/2/3.png",
+       "image/2/4.png",
+       "image/2/5.png",
+       "image/2/6.png",
+       "image/2/7.png"
+     ]'>
+       <div class="project-img">
+        <div class="project-lod">LOD 300</div>
+        <div class="project-img-placeholder">
+          <div class="placeholder-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <div class="placeholder-text">Click to view slideshow</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Commercial | G+5 Building</div>
+        <h3>Foundation & Basement Structural Model</h3>
+        <p class="project-desc">LOD 300 structural model focused on raft foundation, pile caps, retaining walls, and basement slab elements. Reinforcement modelling and BBS prepared for all foundation elements ready for contractor construction use.</p>
+        <div class="project-tags"><span class="tag">Revit Structure</span><span class="tag">Foundation Design</span><span class="tag">Reinforcement</span></div>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-images='[
+       "image/2/1..png",
+       "image/2/1.png",
+       "image/2/2.png",
+       "image/2/3.png",
+       "image/2/4.png",
+       "image/2/5.png",
+       "image/2/6.png",
+       "image/2/7.png"
+     ]'>
+      <div class="project-img">
+        <div class="project-lod">LOD 200</div>
+        <div class="project-img-placeholder">
+          <div class="placeholder-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+          <div class="placeholder-text">Click to view slideshow</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Education Facility | Visualization</div>
+        <h3>3D Design Visualization — Education Facility</h3>
+        <p class="project-desc">Architectural 3D presentation models using SketchUp and Enscape for a zonal education office project. Produced stakeholder-ready walkthroughs and rendered views for client approval across three facility buildings.</p>
+        <div class="project-tags"><span class="tag">SketchUp</span><span class="tag">Enscape</span><span class="tag">Visualization</span><span class="tag">AutoCAD</span></div>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-images='["https://placecats.com/1200/809?random=10","https://placecats.com/1200/810?random=11"]'>
+      <div class="project-img">
+        <div class="project-lod">LOD 400</div>
+        <div class="project-img-placeholder">
+          <div class="placeholder-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="placeholder-text">Click to view slideshow</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Residential | G+10 Building</div>
+        <h3>Staircase & Shear Wall Detailing</h3>
+        <p class="project-desc">Detailed modelling of staircase flights, landings, and shear wall elements for a G+10 high-rise. Included full reinforcement modelling and coordination with architectural openings and MEP penetrations through Navisworks.</p>
+        <div class="project-tags"><span class="tag">Revit Structure</span><span class="tag">Navisworks</span><span class="tag">Shear Walls</span><span class="tag">Staircase</span></div>
+      </div>
+    </div>
+
+    
+  </div>
+</section>
+
+<!-- SKILLS (unchanged) -->
+<section class="skills-section" id="skills">
+  <div class="section-tag" style="color:var(--gold);">Capabilities</div>
+  <h2>Technical skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div class="skill-card-name">Autodesk Revit Structure</div><div class="skill-card-sub">LOD 200–400 modelling, families, schedules, sheet production</div></div>
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="skill-card-name">Navisworks Manage</div><div class="skill-card-sub">Clash detection, model federation, coordination reports</div></div>
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div><div class="skill-card-name">RCC structural detailing</div><div class="skill-card-sub">Columns, beams, slabs, footings, shear walls, staircases</div></div>
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="skill-card-name">BBS preparation</div><div class="skill-card-sub">Bar Bending Schedules for all RCC concrete elements</div></div>
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="skill-card-name">ISO 19650 / BEP</div><div class="skill-card-sub">BIM standards, execution plans, model QA/QC</div></div>
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div class="skill-card-name">AutoCAD</div><div class="skill-card-sub">2D structural & architectural drafting</div></div>
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div><div class="skill-card-name">SketchUp / Enscape</div><div class="skill-card-sub">3D visualization and stakeholder presentations</div></div>
+    <div class="skill-card reveal"><div class="skill-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div class="skill-card-name">BIM 360 / ACC</div><div class="skill-card-sub">Cloud CDE, model sharing, version control</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE (unchanged) -->
+<section id="experience">
+  <div class="section-tag">Experience</div>
+  <h2>Career timeline</h2>
+  <div class="timeline">
+    <div class="timeline-item reveal"><div class="timeline-dot"></div><div class="timeline-period">Jan 2021 – Present</div><div class="timeline-role">Structural BIM Modeler</div><div class="timeline-company">Self-Employed (Freelance) · Remote, Sri Lanka</div><ul class="timeline-desc"><li>Delivered LOD 200–400 structural BIM models for 4+ residential projects (G+5 to G+10) using Revit Structure</li><li>Produced shop drawings from BIM models, reducing design-to-drawing turnaround by 30%</li><li>Resolved 50+ multidisciplinary clash issues per project cycle using Navisworks</li><li>Prepared reinforcement models and BBS for footings, columns, beams, and slabs</li><li>Maintained model compliance with ISO 19650 standards and BEP requirements</li></ul></div>
+    <div class="timeline-item reveal"><div class="timeline-dot"></div><div class="timeline-period">Feb 2024 – Aug 2024</div><div class="timeline-role">Assistant Civil Engineer</div><div class="timeline-company">CIVZCONN Pvt Ltd · Sri Lanka</div><ul class="timeline-desc"><li>Coordinated structural drawings with on-site RCC construction activities</li><li>Conducted pre-pour reinforcement inspections across 10+ structural elements — zero rework incidents</li><li>Resolved reinforcement and detailing discrepancies on site, reducing material waste</li><li>Maintained daily progress reports and construction documentation</li></ul></div>
+    <div class="timeline-item reveal"><div class="timeline-dot"></div><div class="timeline-period">Jun 2022 – Dec 2022</div><div class="timeline-role">Draughtsperson Trainee</div><div class="timeline-company">Zonal Education Office · Sri Lanka</div><ul class="timeline-desc"><li>Prepared architectural and structural drawings using AutoCAD to Sri Lankan building standards</li><li>Developed 3D presentation models with SketchUp for 3 education facility projects</li><li>Supported site measurement and as-built documentation activities</li></ul></div>
+    <div class="timeline-item reveal"><div class="timeline-dot"></div><div class="timeline-period">Jan 2019 – Jun 2020</div><div class="timeline-role">Site Supervisor</div><div class="timeline-company">Hijra Construction · Sri Lanka</div><ul class="timeline-desc"><li>Supervised RCC structural works for residential construction projects</li><li>Coordinated labor teams of 10–15 workers to meet project milestones</li><li>Enforced safety standards and quality requirements throughout construction lifecycle</li></ul></div>
+  </div>
+</section>
+
+<!-- CONTACT (unchanged) -->
+<section class="contact" id="contact">
+  <div class="section-tag">Contact</div>
+  <div class="contact-grid">
+    <div class="contact-text reveal">
+      <h2>Open to GCC opportunities</h2>
+      <p>I'm immediately available for Structural BIM Modeler and BIM Engineer roles across Saudi Arabia, UAE, and Qatar. Open to GCC work visa sponsorship and relocation.</p>
+      <p>Whether you're a contractor, consultant, or developer looking for precise structural BIM delivery — I'd be glad to discuss how I can contribute to your projects.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:mohammedaasik17@gmail.com"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> mohammedaasik17@gmail.com</a>
+        <a class="contact-link" href="tel:+94771957299"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.12-1.12a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +94 771 957 299</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/mohammed-aasik-4a2b4026b" target="_blank"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn Profile</a>
+      </div>
+    </div>
+    <div class="contact-info reveal">
+      <div class="info-block"><div class="info-label">Nationality</div><div class="info-value">Sri Lankan</div></div>
+      <div class="info-block"><div class="info-label">Availability</div><div class="info-value">Immediate</div></div>
+      <div class="info-block"><div class="info-label">Target locations</div><div class="info-value">Riyadh · Dubai · Abu Dhabi · Doha</div></div>
+      <div class="info-block"><div class="info-label">Work authorization</div><div class="info-value">Open to GCC work visa sponsorship</div></div>
+      <div class="info-block"><div class="info-label">Languages</div><div class="info-value">English · Tamil · Sinhala</div></div>
+      <div class="info-block"><div class="info-label">Certifications in progress</div><div class="info-value">ISO 19650 · Navisworks · Tekla Structures</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Saheed Mohammed Aasik</div>
+  <div class="footer-copy">Structural BIM Modeler · Sri Lanka · 2025</div>
+</footer>
+
+<!-- SLIDESHOW OVERLAY -->
+<div class="slideshow-overlay" id="slideshowOverlay">
+  <div class="slideshow-container">
+    <button class="slideshow-close" id="slideshowClose">✕</button>
+    <div class="slideshow-slide" id="slideshowSlide">
+      <img id="slideshowImg" src="" alt="project image" style="display:none;">
+      <span class="fallback-text" id="slideshowFallback">No image</span>
+    </div>
+    <button class="slideshow-nav prev" id="slideshowPrev">‹</button>
+    <button class="slideshow-nav next" id="slideshowNext">›</button>
+    <div class="slideshow-counter" id="slideshowCounter">1 / 1</div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // === slideshow logic ===
+    const overlay = document.getElementById('slideshowOverlay');
+    const slideImg = document.getElementById('slideshowImg');
+    const fallback = document.getElementById('slideshowFallback');
+    const counter = document.getElementById('slideshowCounter');
+    const prevBtn = document.getElementById('slideshowPrev');
+    const nextBtn = document.getElementById('slideshowNext');
+    const closeBtn = document.getElementById('slideshowClose');
+
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openSlideshow(images, startIndex = 0) {
+      if (!images || images.length === 0) return;
+      currentImages = images;
+      currentIndex = Math.min(startIndex, images.length - 1);
+      overlay.classList.add('open');
+      renderSlide();
+    }
+
+    function renderSlide() {
+      const url = currentImages[currentIndex];
+      if (url) {
+        slideImg.src = url;
+        slideImg.style.display = 'block';
+        fallback.style.display = 'none';
+      } else {
+        slideImg.style.display = 'none';
+        fallback.style.display = 'block';
+        fallback.textContent = 'Image not available';
+      }
+      counter.textContent = `${currentIndex+1} / ${currentImages.length}`;
+    }
+
+    function nextSlide() {
+      if (currentImages.length === 0) return;
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      renderSlide();
+    }
+
+    function prevSlide() {
+      if (currentImages.length === 0) return;
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      renderSlide();
+    }
+
+    function closeSlideshow() {
+      overlay.classList.remove('open');
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    closeBtn.addEventListener('click', closeSlideshow);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeSlideshow();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'Escape') closeSlideshow();
+    });
+
+    // === attach click to project cards ===
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        const imagesAttr = this.getAttribute('data-images');
+        if (!imagesAttr) return;
+        try {
+          const images = JSON.parse(imagesAttr);
+          if (Array.isArray(images) && images.length) {
+            openSlideshow(images, 0);
+          }
+        } catch (err) {
+          // if not JSON, treat as single image
+          const url = imagesAttr.trim();
+          if (url) openSlideshow([url], 0);
+        }
+      });
+    });
+
+    // === scroll reveal & skill bar (unchanged) ===
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => io.observe(r));
+
+    const fills = document.querySelectorAll('.skill-fill');
+    const fillIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.width = e.target.dataset.w + '%';
+          fillIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    fills.forEach(f => fillIO.observe(f));
+  })();
+</script>
+</body>
+</html>
