@@ -260,6 +260,11 @@
       display: flex; flex-direction: column; align-items: center; gap: 1rem;
       color: var(--ink-muted);
     }
+    .project-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .placeholder-icon {
       width: 48px; height: 48px;
       border: 1px solid var(--border);
@@ -278,6 +283,7 @@
       text-transform: uppercase;
       padding: 0.3rem 0.6rem;
       border-radius: 2px;
+      z-index: 2;
     }
     .project-body { padding: 1.5rem; }
     .project-type {
@@ -637,7 +643,8 @@
 
           <img src="Image/Front/1.png"
                alt="Project 1 Preview"
-               class="project-image">
+               class="project-image"
+               onerror="this.style.display='none'">
 
         </div>
 
@@ -703,7 +710,8 @@
 
           <img src="Image/Front/2.png"
                alt="Project 2 Preview"
-               class="project-image">
+               class="project-image"
+               onerror="this.style.display='none'">
 
         </div>
 
@@ -787,7 +795,8 @@
 
           <img src="Image/Front/3.png"
                alt="Project 3 Preview"
-               class="project-image">
+               class="project-image"
+               onerror="this.style.display='none'">
 
 
         </div>
@@ -945,6 +954,12 @@
         slideImg.src = url;
         slideImg.style.display = 'block';
         fallback.style.display = 'none';
+        // Handle image load error
+        slideImg.onerror = function() {
+          this.style.display = 'none';
+          fallback.style.display = 'block';
+          fallback.textContent = 'Image not available';
+        };
       } else {
         slideImg.style.display = 'none';
         fallback.style.display = 'block';
